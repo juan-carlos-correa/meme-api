@@ -10324,7 +10324,7 @@ function Layout(props) {
           __html: props.content
         }
       }),
-      _react2.default.createElement("script", { src: "http://localhost:3001/app.js" })
+      _react2.default.createElement("script", { src: "http://localhost:3003/app.js" })
     )
   );
 }
@@ -10468,7 +10468,7 @@ function requestHandler(req, res) {
 
 const server = _http2.default.createServer(requestHandler);
 
-server.listen(3000);
+server.listen(3002);
 
 /***/ }),
 /* 98 */
