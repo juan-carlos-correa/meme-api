@@ -4,20 +4,24 @@ import PropTypes from 'prop-types';
 class Meme extends Component {
   render() {
     return (
-      <article id={`meme-${this.props.id}`}>
-        <h2>{this.props.name}</h2>
-        <img src={this.props.url} />
-      </article>  
+      <article id={`meme-${this.props.generatorID}`}>
+        <h2>{this.props.displayName}</h2>
+        <img src={this.props.imageUrl} />
+      </article>
     )
   }
 }
 
 Meme.propTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string,
-  url: PropTypes.string,
-  width: PropTypes.number,
-  height: PropTypes.number
+  generatorID: PropTypes.number,
+  imageID: PropTypes.number,
+  displayName: PropTypes.string,
+  urlName: PropTypes.string,
+  totalVotesScore: PropTypes.number,
+  urlNinstancesCountame: PropTypes.number,
+  ranking: PropTypes.number,
+  entityVotesSummary: PropTypes.object,
+  imageUrl: PropTypes.string
 };
 
 export default Meme;

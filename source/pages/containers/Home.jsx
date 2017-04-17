@@ -33,8 +33,8 @@ class Home extends Component {
           )}
           {
             this.state.memes.success && (
-              this.state.memes.data.memes
-                .map(meme => <Meme key={meme.id} {...meme} />)
+              this.state.memes.result
+                .map(meme => <Meme key={meme.generatorID} {...meme} />)
             )
           }
         </section>
