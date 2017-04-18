@@ -9610,7 +9610,7 @@ Router.childContextTypes = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path_to_regexp__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path_to_regexp__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path_to_regexp___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_path_to_regexp__);
 
 
@@ -14488,7 +14488,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _isomorphicFetch = __webpack_require__(145);
+var _isomorphicFetch = __webpack_require__(144);
 
 var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 
@@ -14500,9 +14500,9 @@ const baseUrl = 'http://version1.api.memegenerator.net/';
 
 const api = {
   memes: {
-    getMemes() {
+    getMemes(page = 1) {
       return _asyncToGenerator(function* () {
-        const response = yield (0, _isomorphicFetch2.default)(`${baseUrl}/Generators_Select_ByPopular?pageIndex=0&pageSize=12&days=&apiKey=demo`);
+        const response = yield (0, _isomorphicFetch2.default)(`${baseUrl}/Generators_Select_ByPopular?pageIndex=${page}&pageSize=12&days=&apiKey=demo`);
         const data = yield response.json();
         return data;
       })();
@@ -14527,6 +14527,8 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(34);
+
 var _propTypes = __webpack_require__(7);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
@@ -14534,16 +14536,40 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 class Meme extends _react.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return _react2.default.createElement(
       'article',
       { id: `meme-${this.props.generatorID}` },
       _react2.default.createElement(
-        'h2',
-        null,
-        this.props.displayName
+        _reactRouterDom.Link,
+        { to: `/meme/${this.props.generatorID}` },
+        _react2.default.createElement(
+          'h2',
+          null,
+          this.props.displayName
+        )
       ),
-      _react2.default.createElement('img', { src: this.props.imageUrl })
+      _react2.default.createElement(
+        _reactRouterDom.Link,
+        { to: `/meme/${this.props.generatorID}` },
+        _react2.default.createElement('img', { src: this.props.imageUrl })
+      ),
+      _react2.default.createElement(
+        'p',
+        null,
+        'Total votes: ',
+        this.props.totalVotesScore
+      ),
+      _react2.default.createElement(
+        'p',
+        null,
+        'Ranking: ',
+        this.props.ranking
+      )
     );
   }
 }
@@ -14554,7 +14580,6 @@ Meme.propTypes = {
   displayName: _propTypes2.default.string,
   urlName: _propTypes2.default.string,
   totalVotesScore: _propTypes2.default.number,
-  urlNinstancesCountame: _propTypes2.default.number,
   ranking: _propTypes2.default.number,
   entityVotesSummary: _propTypes2.default.object,
   imageUrl: _propTypes2.default.string
@@ -14599,23 +14624,24 @@ class Home extends _react.Component {
 
     this.state = {
       memes: [],
-      loading: true
+      loading: true,
+      page: 1
     };
   }
   componentDidMount() {
     var _this = this;
 
     return _asyncToGenerator(function* () {
-      const memes = yield _api2.default.memes.getMemes();
+      const memes = yield _api2.default.memes.getMemes(_this.state.page);
       _this.setState({
         memes,
-        loading: false
+        loading: false,
+        page: _this.state.page + 1
       });
     })();
   }
 
   render() {
-    console.log(this.state.memes.success);
     return _react2.default.createElement(
       'section',
       { name: 'Home' },
@@ -17060,7 +17086,7 @@ module.exports = {
 
     'shiftjis': {
         type: '_dbcs',
-        table: function() { return __webpack_require__(150) },
+        table: function() { return __webpack_require__(149) },
         encodeAdd: {'\u00a5': 0x5C, '\u203E': 0x7E},
         encodeSkipVals: [{from: 0xED40, to: 0xF940}],
     },
@@ -17077,7 +17103,7 @@ module.exports = {
 
     'eucjp': {
         type: '_dbcs',
-        table: function() { return __webpack_require__(148) },
+        table: function() { return __webpack_require__(147) },
         encodeAdd: {'\u00a5': 0x5C, '\u203E': 0x7E},
     },
 
@@ -17123,7 +17149,7 @@ module.exports = {
     'gb18030': {
         type: '_dbcs',
         table: function() { return __webpack_require__(39).concat(__webpack_require__(69)) },
-        gb18030: function() { return __webpack_require__(149) },
+        gb18030: function() { return __webpack_require__(148) },
         encodeSkipVals: [0x80],
         encodeAdd: {'€': 0xA2E3},
     },
@@ -17138,7 +17164,7 @@ module.exports = {
     '949': 'cp949',
     'cp949': {
         type: '_dbcs',
-        table: function() { return __webpack_require__(147) },
+        table: function() { return __webpack_require__(146) },
     },
 
     'cseuckr': 'cp949',
@@ -17186,7 +17212,7 @@ module.exports = {
     'big5': 'big5hkscs',
     'big5hkscs': {
         type: '_dbcs',
-        table: function() { return __webpack_require__(68).concat(__webpack_require__(146)) },
+        table: function() { return __webpack_require__(68).concat(__webpack_require__(145)) },
         encodeSkipVals: [0xa2cc],
     },
 
@@ -19195,21 +19221,12 @@ isStream.transform = function (stream) {
 
 /***/ }),
 /* 144 */
-/***/ (function(module, exports) {
-
-module.exports = Array.isArray || function (arr) {
-  return Object.prototype.toString.call(arr) == '[object Array]';
-};
-
-
-/***/ }),
-/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var realFetch = __webpack_require__(151);
+var realFetch = __webpack_require__(150);
 module.exports = function(url, options) {
 	if (/^\/\//.test(url)) {
 		url = 'https:' + url;
@@ -19226,7 +19243,7 @@ if (!global.fetch) {
 
 
 /***/ }),
-/* 146 */
+/* 145 */
 /***/ (function(module, exports) {
 
 module.exports = [
@@ -19735,7 +19752,7 @@ module.exports = [
 ];
 
 /***/ }),
-/* 147 */
+/* 146 */
 /***/ (function(module, exports) {
 
 module.exports = [
@@ -22118,7 +22135,7 @@ module.exports = [
 ];
 
 /***/ }),
-/* 148 */
+/* 147 */
 /***/ (function(module, exports) {
 
 module.exports = [
@@ -22943,7 +22960,7 @@ module.exports = [
 ];
 
 /***/ }),
-/* 149 */
+/* 148 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -23368,7 +23385,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 150 */
+/* 149 */
 /***/ (function(module, exports) {
 
 module.exports = [
@@ -23919,7 +23936,7 @@ module.exports = [
 ];
 
 /***/ }),
-/* 151 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -23937,9 +23954,9 @@ var zlib = __webpack_require__(259);
 var stream = __webpack_require__(28);
 
 var Body = __webpack_require__(40);
-var Response = __webpack_require__(153);
+var Response = __webpack_require__(152);
 var Headers = __webpack_require__(41);
-var Request = __webpack_require__(152);
+var Request = __webpack_require__(151);
 var FetchError = __webpack_require__(70);
 
 // commonjs
@@ -24196,7 +24213,7 @@ Fetch.Request = Request;
 
 
 /***/ }),
-/* 152 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -24277,7 +24294,7 @@ Request.prototype.clone = function() {
 
 
 /***/ }),
-/* 153 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -24333,10 +24350,10 @@ Response.prototype.clone = function() {
 
 
 /***/ }),
-/* 154 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isarray = __webpack_require__(144)
+var isarray = __webpack_require__(154)
 
 /**
  * Expose `pathToRegexp`.
@@ -24762,6 +24779,15 @@ function pathToRegexp (path, keys, options) {
 
   return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
 }
+
+
+/***/ }),
+/* 154 */
+/***/ (function(module, exports) {
+
+module.exports = Array.isArray || function (arr) {
+  return Object.prototype.toString.call(arr) == '[object Array]';
+};
 
 
 /***/ }),

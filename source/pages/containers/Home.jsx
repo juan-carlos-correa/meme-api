@@ -12,18 +12,19 @@ class Home extends Component {
     this.state = {
       memes: [],
       loading: true,
+      page: 1,
     }
   }
   async componentDidMount() {
-    const memes = await api.memes.getMemes();
+    const memes = await api.memes.getMemes(this.state.page);
     this.setState({
       memes,
       loading: false,
+      page: this.state.page + 1,
     })
   }
 
   render() {
-    console.log(this.state.memes.success);
     return (
       <section name="Home">
         <h1>Welcome to Meme-Api</h1>
