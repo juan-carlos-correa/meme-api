@@ -9,11 +9,11 @@ class Home extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
+    this.state = ({
       memes: [],
       loading: true,
       page: 1,
-    }
+    });
   }
   async componentDidMount() {
     const memes = await api.memes.getMemes(this.state.page);

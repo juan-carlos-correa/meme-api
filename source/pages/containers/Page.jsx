@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 
 import Home from './Home.jsx';
+import SingleMeme from './SingleMeme.jsx';
 
 function Pages() {
   return (
@@ -16,6 +17,12 @@ function Pages() {
           path="/"
           exact
           component={Home}
+        />
+				{/* Single meme */}
+        <Route
+          path="/meme/:id"
+          exact
+          component={SingleMeme}
         />
       </Switch>
     </main>
