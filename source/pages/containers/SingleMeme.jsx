@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Meme from '../../memes/containers/Meme.jsx';
+import Loading from '../../shared/components/Loading.jsx';
 
 import api from '../../api.js';
 
@@ -25,6 +26,7 @@ class SingleMeme extends Component{
 
   render() {
     console.log(this.state.meme)
+    if (this.state.loading) return <Loading/>
     if (this.state.meme.success) {
       return (
         <section name="single-meme">
@@ -36,10 +38,6 @@ class SingleMeme extends Component{
           <p>{this.state.meme.result.description}</p>
         </section>
       );
-    } else {
-      return (
-        <h1>Loading... </h1>
-      )
     }
   }
 

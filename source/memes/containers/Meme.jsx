@@ -28,7 +28,6 @@ Meme.propTypes = {
   imageID: PropTypes.number,
   displayName: PropTypes.string,
   urlName: PropTypes.string,
-  totalVotesScore: PropTypes.number,
   ranking: PropTypes.number,
   entityVotesSummary: PropTypes.object,
   imageUrl: PropTypes.string

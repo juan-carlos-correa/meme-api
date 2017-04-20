@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import Meme from '../../memes/containers/Meme.jsx';
+import Loading from '../../shared/components/Loading.jsx';
 
 import api from '../../api.js';
 
@@ -30,7 +31,7 @@ class Home extends Component {
         <h1>Welcome to Meme-Api</h1>
         <section>
           {this.state.loading && (
-            <h2>Loading memes...</h2>
+            <Loading />
           )}
           {
             this.state.memes.success && (
