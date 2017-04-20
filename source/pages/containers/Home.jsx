@@ -49,10 +49,12 @@ class Home extends Component {
     this.setState({ loading:true }, async () => {
       try {
         const memes = await api.memes.getMemes(this.state.page);
-        console.log(this.state.memes.result);
-        console.log(memes.result);
         this.setState({
-          memes: this.state.memes.result.concat(memes.result),
+          memes: {
+            success: memes.success,
+            warning: memes.warning,
+            result: this.state.memes.result.concat(memes.result),
+          },
           loading: false,
           page: this.state.page + 1,
         })
