@@ -8,20 +8,58 @@ import api from '../../api.js';
 
 class Home extends Component {
   constructor(props) {
-    super(props);
+   super(props)
 
-    this.state = ({
-      memes: [],
-      loading: true,
-      page: 1,
-    });
+   this.state = {
+     page: 1,
+     memes: [],
+     loading: true,
+   }
+   this.handleScroll = this.handleScroll.bind(this)
+ }
+
+ async componentDidMount() {
+     const memes = await api.memes.getMemes(this.state.page)
+
+     this.setState({
+       memes,
+       page: this.state.page + 1,
+       loading: false,
+     })
+
+     window.addEventListener('scroll', this.handleScroll)
+   }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
   }
-  async componentDidMount() {
-    const memes = await api.memes.getMemes(this.state.page);
-    this.setState({
-      memes,
-      loading: false,
-      page: this.state.page + 1,
+
+  handleScroll(e) {
+    // Si esta cargando terminar la funcion
+    if (this.state.loading) return null;
+
+    const scrolled  = window.scrollY;
+    const viewportHeight = window.innerHeight;
+    const fullHeight = document.documentElement.clientHeight;
+
+    if (!(scrolled + viewportHeight + 300 >= fullHeight )) {
+      return null
+    }
+
+    this.setState({ loading:true }, async () => {
+      try {
+        const memes = await api.memes.getMemes(this.state.page);
+        console.log(this.state.memes.result);
+        console.log(memes.result);
+        this.setState({
+          memes: this.state.memes.result.concat(memes.result),
+          loading: false,
+          page: this.state.page + 1,
+        })
+      } catch (e) {
+        console.log(e);
+        this.setState({loading: false});
+      }
     })
   }
 
