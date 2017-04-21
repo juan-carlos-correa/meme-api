@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Meme from '../../memes/containers/Meme.jsx';
 import Loading from '../../shared/components/Loading.jsx';
+import Header from '../../shared/components/Header.jsx';
 
 import api from '../../api.js';
 
@@ -68,6 +69,7 @@ class Home extends Component {
   render() {
     return (
       <section name="Home">
+        <Header />
         <h1>Welcome to Meme-Api</h1>
         <section>
           {this.state.loading && (
