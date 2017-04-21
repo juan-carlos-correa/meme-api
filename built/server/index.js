@@ -14553,6 +14553,10 @@ function Layout(props) {
         rel: "stylesheet",
         href: "http://localhost:3003/styles.css"
       }),
+      _react2.default.createElement("link", {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css?family=Kaushan+Script"
+      }),
       _react2.default.createElement("meta", {
         name: "viewport",
         content: "width=device-width, initial-scale=1.0, minimum-scale=1.0"
