@@ -70,7 +70,6 @@ class Home extends Component {
     return (
       <section name="Home">
         <Header />
-        <h1>Welcome to Meme-Api</h1>
         <section>
           {this.state.loading && (
             <Loading />

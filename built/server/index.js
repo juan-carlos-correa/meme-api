@@ -9973,6 +9973,10 @@ var _propTypes = __webpack_require__(7);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
+var _Meme = __webpack_require__(268);
+
+var _Meme2 = _interopRequireDefault(_Meme);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 class Meme extends _react.Component {
@@ -9983,13 +9987,13 @@ class Meme extends _react.Component {
   render() {
     return _react2.default.createElement(
       'article',
-      { id: `meme-${this.props.generatorID}` },
+      { id: `meme-${this.props.generatorID}`, className: _Meme2.default.meme },
       _react2.default.createElement(
-        _reactRouterDom.Link,
-        { to: `/meme/${this.props.generatorID}` },
+        'h2',
+        { className: _Meme2.default.title },
         _react2.default.createElement(
-          'h2',
-          null,
+          _reactRouterDom.Link,
+          { to: `/meme/${this.props.generatorID}` },
           this.props.displayName
         )
       ),
@@ -14748,11 +14752,6 @@ class Home extends _react.Component {
       'section',
       { name: 'Home' },
       _react2.default.createElement(_Header2.default, null),
-      _react2.default.createElement(
-        'h1',
-        null,
-        'Welcome to Meme-Api'
-      ),
       _react2.default.createElement(
         'section',
         null,
@@ -36823,6 +36822,17 @@ module.exports = require("util");
 /***/ (function(module, exports) {
 
 module.exports = require("zlib");
+
+/***/ }),
+/* 264 */,
+/* 265 */,
+/* 266 */,
+/* 267 */,
+/* 268 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"meme":"_2aDhpnmvOqGupyT1wc3Tew","title":"_1FzDpiRgKVb446QgX8Nyzh","meta":"_2fS3K4bay883XA8dDnNB1q"};
 
 /***/ })
 /******/ ]);

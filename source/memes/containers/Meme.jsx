@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import styles from './Meme.css';
+
 class Meme extends Component {
   constructor(props) {
     super(props);
@@ -9,10 +11,12 @@ class Meme extends Component {
 
   render() {
     return (
-      <article id={`meme-${this.props.generatorID}`}>
-        <Link to={`/meme/${this.props.generatorID}`}>
-          <h2>{this.props.displayName}</h2>
-        </Link>
+      <article id={`meme-${this.props.generatorID}`} className={styles.meme}>
+        <h2 className={styles.title}>
+          <Link to={`/meme/${this.props.generatorID}`}>
+            {this.props.displayName}
+          </Link>
+        </h2>
         <Link to={`/meme/${this.props.generatorID}`}>
           <img src={this.props.imageUrl} />
         </Link>
