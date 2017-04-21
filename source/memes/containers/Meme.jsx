@@ -20,8 +20,12 @@ class Meme extends Component {
         <Link to={`/meme/${this.props.generatorID}`}>
           <img src={this.props.imageUrl} />
         </Link>
-        <p>Total votes: {this.props.totalVotesScore}</p>
-        <p>Ranking: {this.props.ranking}</p>
+        <p>
+          Total votes: <span className={styles.score}>{this.props.totalVotesScore}</span>
+        </p>
+        <p>
+          Ranking: <span className={styles.score}>{this.props.ranking}</span>
+        </p>
       </article>
     )
   }

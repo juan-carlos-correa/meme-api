@@ -1,8 +1,6 @@
 .meme {
   width: 30%;
   height: auto;
-  border-radius: .5em;
-  box-shadow: 0 0 .5em black;
   padding: 1em;
   margin: 2em 0;
   transition: all .3s;
@@ -16,19 +14,31 @@
 .meme a img {
   width: 100%;
   height: 50%;
+  border-radius: .45em;
 }
 
 .title {
   margin: 0;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
 }
 .title a {
-  color: black;
+  color: white;
+  text-shadow: 2px 0 0 #000, -1px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
   text-decoration: none;
 }
 
 .meta {
   display: flex;
   justify-content: space-between;
+}
+
+.score {
+  padding: .3em;
+  margin: 0 .2em;
+  color: white;
+  background-color: #FA5858;
+  border-radius: .45em;
 }
 
 /* For tablets: */

@@ -12,7 +12,7 @@ function Layout(props) {
         />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Kaushan+Script"
+          href="https://fonts.googleapis.com/css?family=Kaushan+Script|Roboto"
         />
         <meta
           name="viewport"
